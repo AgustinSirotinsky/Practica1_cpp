@@ -207,24 +207,35 @@ void Ejercicio8() {
 
     //Generador random de numeros
     int number;
-    int over100=0;
+    //Over 100
+    int countOver100=0;
+    float over100=0;
+    float promedioOver100;
+    //Negative
+    int countNegative=0;
     int negative=0;
+    int sumaNegative=0;
+    //Other
     int other=0;
     for (int i=0; i<50; i++){
-        number = Random(2200,200); // Random(minimo,maximo);
+        number = Random(-100,200); // Random(minimo,maximo);
         cout << number << "\n";
         
-        if (number >=100){
-            over100++;
+        if (number >= 100){
+            countOver100++;
+            over100+=number;
+            promedioOver100=over100/countOver100;
         }
-        else if (number < 0){
-            negative++;
+        else if (number <= -10){
+            countNegative++;
+            negative-=number;
         }
         else {
             other++;
         }
     }
-    cout << "Number over 100: " << over100 << "\n Negative numbers: " << negative << "\n Other: " << other;
+    cout << "Number over 100: " << countOver100 << "\n Numbers below -10: " << countNegative << "\n Other: " << other << "\n";
+    cout << "Promedio de numeros por arriba de 100: " << promedioOver100 << "\n suma de los numeros menores que -10: " << negative;
 }
 
 int Random(int minimo, int maximo){
