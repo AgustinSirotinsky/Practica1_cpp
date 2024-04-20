@@ -22,6 +22,7 @@ void Ejercicio16();
 void Ejercicio17();
 void Ejercicio18();
 void Ejercicio19();
+void Ejercicio20();
 
 // string ReadString(string txt);
 // char ReadText(string txt);
@@ -34,12 +35,12 @@ int Random(int minimo, int maximo);
 
 int main() {
     system("CLS");
-    int choice = ReadInt("Hola! Eleji lo que quieras hacer: \n0. Creditos \n1. Ejercicio 1 \n2. Ejercicio 2 \n3. Ejercicio 3 \n4. Ejercicio 4 \n5. Ejercicio 5 \n6. Ejercicio 6 \n7. Ejercicio 7 \n8. Ejercicio 8 \n9. Ejercicio 9 \n10. Ejercicio 10 \n11. Ejercicio 11 \n12. Ejercicio 12 \n13. Ejercicio 13 \n14. Ejercicio 14 \n15. Ejercicio 15 \n16. Ejercicio 16 \n17. Ejercicio 17 \n18. Ejercicio 18 \n19. Ejercicio 19 \n");
+    int choice = ReadInt("Hola! Eleji lo que quieras hacer: \n0. Creditos \n1 - 19 Ejercicios");
     system("CLS");
-    while (choice<=-1)
+    while (choice<=-1 || choice >= 20)
     {
-        cout<<"Incorrect input";
-        int choice = ReadInt("Hola! Eleji lo que quieras hacer: \n0. Creditos \n1. Ejercicio 1 \n2. Ejercicio 2 \n3. Ejercicio 3 \n4. Ejercicio 4 \n5. Ejercicio 5 \n6. Ejercicio 6 \n7. Ejercicio 7 \n8. Ejercicio 8 \n9. Ejercicio 9 \n10. Ejercicio 10 \n11. Ejercicio 11 \n12. Ejercicio 12 \n13. Ejercicio 13 \n14. Ejercicio 14 \n15. Ejercicio 15 \n16. Ejercicio 16 \n17. Ejercicio 17 \n18. Ejercicio 18 \n19. Ejercicio 19 \n");
+        cout<<"Incorrect input \n";
+        int choice = ReadInt("Hola! Eleji lo que quieras hacer: \n0. Creditos \n1 - 19 Ejercicios");
     }
     if (choice==0){
         cout << " Materia: Algoritmos y Estructura de Datos \n Curso: K1042 \n Profesora: Roxana Leituz \n Estudiante: Agustin Sirotinsky \n Mail: agussiro06@gmail.com";
@@ -100,6 +101,9 @@ int main() {
     }
     if (choice==19){
         Ejercicio19();
+    }
+    if (choice==20){
+        Ejercicio20();
     }
     return 0;
 }
@@ -238,19 +242,10 @@ void Ejercicio8() {
     cout << "Promedio de numeros por arriba de 100: " << promedioOver100 << "\n suma de los numeros menores que -10: " << negative;
 }
 
-int Random(int minimo, int maximo){
-    int result;
-    int distancia=maximo-minimo;
-
-    //rand funciona de esta manera: rand() % distancia + numero inicial
-    //Si quisiera usar un intervalo de 10 a 50 tendria que poner rand() % distancia(40) + numero inicial(10)
-    result = rand() % distancia + minimo;
-
-    return result;
-}
-
 void Ejercicio9() {
-    
+    cout << "Se realiza una inspección en una fábrica de pinturas, y se detectaron 20 infracciones. De cada infracción se tomó nota de los siguientes datos: \n - Tipo de Infracción (1, 2, 3, o 4) \n - Motivo de la Infracción \n - Valor de la multa (un entero) \n - Gravedad de la infracción (‘L’,‘M’, ‘G’) \n Se pide informar al final del proceso: \n • Los valores totales de la multa a pagar de acuerdo al tipo de gravedad. \n• La leyenda “Clausurar fabrica” si la cantidad de infracciones 3 y 4 con gravedad “G” sean mayor a 3. \n \n";
+
+
 }
 
 void Ejercicio10() {
@@ -291,6 +286,33 @@ void Ejercicio18() {
 
 void Ejercicio19() {
     
+}
+void Ejercicio20() {
+    int potencia;
+    int numeroOriginal;
+    int numeroElevado;
+    
+    numeroOriginal = ReadInt("Leer el numero");
+    potencia = ReadInt("Leer la potencia");
+    
+    numeroElevado = numeroOriginal;
+    for (int i=1; i<potencia; i++){
+        numeroElevado*=numeroOriginal;
+        cout << numeroOriginal << " Elevado a " << i << ": " << numeroElevado  << "\n";
+    }
+    cout << numeroOriginal << " Elevado a " << potencia << ": " << numeroElevado  << "\n";
+} 
+
+//Funcion random
+int Random(int minimo, int maximo){
+    int result;
+    int distancia=maximo-minimo;
+
+    //rand funciona de esta manera: rand() % distancia + numero inicial
+    //Si quisiera usar un intervalo de 10 a 50 tendria que poner rand() % distancia(40) + numero inicial(10)
+    result = rand() % distancia + minimo;
+
+    return result;
 }
 
 //Leer Texto
