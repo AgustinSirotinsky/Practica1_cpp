@@ -243,7 +243,14 @@ void Ejercicio8() {
 }
 
 void Ejercicio9() {
-    cout << "Se realiza una inspección en una fábrica de pinturas, y se detectaron 20 infracciones. De cada infracción se tomó nota de los siguientes datos: \n - Tipo de Infracción (1, 2, 3, o 4) \n - Motivo de la Infracción \n - Valor de la multa (un entero) \n - Gravedad de la infracción (‘L’,‘M’, ‘G’) \n Se pide informar al final del proceso: \n • Los valores totales de la multa a pagar de acuerdo al tipo de gravedad. \n• La leyenda “Clausurar fabrica” si la cantidad de infracciones 3 y 4 con gravedad “G” sean mayor a 3. \n \n";
+    cout << "Se realiza una inspección en una fábrica de pinturas, y se detectaron 20 infracciones. De cada infracción se tomó nota de los siguientes datos:\n "
+    <<"-Tipo de Infracción (1, 2, 3, o 4)\n"
+    <<"Motivo de la Infracción\n"
+    <<"-Valor de la multa (un entero)\n" 
+    <<"-Gravedad de la infracción ('L','M', 'G')\n \n"
+    <<"Se pide informar al final del proceso:\n" 
+    <<"•Los valores totales de la multa a pagar de acuerdo al tipo de gravedad.\n"
+    <<"• La leyenda “Clausurar fabrica” si la cantidad de infracciones 3 y 4 con gravedad “G” sean mayor a 3. \n \n";
 
 
 }
@@ -261,6 +268,12 @@ void Ejercicio12() {
 }
 
 void Ejercicio13() {
+    cout << "Dado un conjunto de valores, que finaliza con un valor nulo, determinar e imprimir (si hubo valores):\n" 
+    << "-El valor máximo negativo\n"
+    <<"-El valor mínimo positivo\n"
+    <<"-El valor mínimo dentro del rango -17.3 y 26.9\n"
+    <<"-El promedio de todos los valores.";
+
     
 }
 
