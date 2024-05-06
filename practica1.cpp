@@ -26,9 +26,9 @@ void Ejercicio20();
 
 // string ReadString(string txt);
 // char ReadText(string txt);
-int ReadInt(string txt);
-double ReadDouble(string txt);
-float ReaFloat(string txt);
+int ReadInt(const char txt[]);
+double ReadDouble(const char txt[]);
+float ReadFloat(const char txt[]);
 
 //Funciones extras
 int Random(int minimo, int maximo);
@@ -255,12 +255,48 @@ void Ejercicio9() {
 
 }
 
+//Ejercicio 10
+struct Ej10{
+        int cantEmpleados;
+        int menor1520=0;
+        int menor2780=0;
+        int menor5999=0;
+        int mayor5999=0;
+    };
+
 void Ejercicio10() {
-    
+    cout << "Se ingresa un conjunto de valores float, cada uno de los cuales representan el sueldo de un empleado, excepto el ultimo valor que es cero e indica el fin del conjunto. Se pide desarrollar un programa que determine e informe:\n"
+    <<"-Cuantos empleados ganan menos $ 1.520.\n"
+    <<"-Cuantos ganan $1.520 o mas pero menos de $2.780.\n"
+    <<"-Cuantos ganan $2.780 o mas pero menos de $5.999.\n"
+    <<"-Cuantos ganan $5.999 o mas.\n \n";
+
+    Ej10 ej10;
+    ej10.cantEmpleados=ReadInt("Cuantos empleados hay?");
+    float sueldos[ej10.cantEmpleados+1]; //+1 para el utlimo valor que tiene que dar 0
+    for (int i=0; i<ej10.cantEmpleados; i++){
+        sueldos[i]=ReadFloat("Ingresar sueldo");
+        if(sueldos[i]<1520){
+            ej10.menor1520++;
+        }
+        else if(sueldos[i]<2780){
+            ej10.menor2780++;
+        }
+        else if(sueldos[i]<5999){
+            ej10.menor5999++;
+        }
+        else{
+            ej10.mayor5999++;
+        }
+    }
+    cout << "Empleados que ganan menos de 1520: " << ej10.menor1520 << "\n"
+    << "Empleados que ganan entre 1520 y 2780: " << ej10.menor2780 << "\n"
+    << "Empleados que ganan entre 2780 y 5999: " << ej10.menor5999 << "\n"
+    << "Empleados que ganan mas de 5999: " << ej10.mayor5999 << "\n";
 }
 
 void Ejercicio11() {
-    
+    cout << "Dados N valores informar el mayor, el menor y en que posición del conjunto fueron ingresados. \n \n";
 }
 
 void Ejercicio12() {
@@ -269,10 +305,10 @@ void Ejercicio12() {
 
 void Ejercicio13() {
     cout << "Dado un conjunto de valores, que finaliza con un valor nulo, determinar e imprimir (si hubo valores):\n" 
-    << "-El valor máximo negativo\n"
+    <<"-El valor máximo negativo\n"
     <<"-El valor mínimo positivo\n"
     <<"-El valor mínimo dentro del rango -17.3 y 26.9\n"
-    <<"-El promedio de todos los valores.";
+    <<"-El promedio de todos los valores. \n";
 
     
 }
@@ -346,7 +382,7 @@ int Random(int minimo, int maximo){
 // }
 
 //Leer Numero
-int ReadInt(string txt){
+int ReadInt(const char txt[]){
     int result;
     cout << txt << "\n";
     cin>>result;
@@ -354,7 +390,7 @@ int ReadInt(string txt){
 }
 
 //Leer Numeros Double
-double ReadDouble(string txt){
+double ReadDouble(const char txt[]){
     double result;
     cout << txt << "\n";
     cin>>result;
@@ -362,7 +398,7 @@ double ReadDouble(string txt){
 }
 
 //Leer Numeros Float
-float ReadFloat(string txt){
+float ReadFloat(const char txt[]){
     float result;
     cout << txt << "\n";
     cin>>result;
