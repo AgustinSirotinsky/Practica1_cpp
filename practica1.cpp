@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <cstring>
 
 using namespace std;
 
@@ -131,6 +132,8 @@ void Ejercicio2(){
 
     cout << "La fecha es: " << dia << "/" << mes << "/" << año;
 }
+
+
 
 void Ejercicio3() {
     cout << "Realizar la suma de todos los números pares entre 2 y 10000 \n \n";
@@ -295,12 +298,64 @@ void Ejercicio10() {
     << "Empleados que ganan mas de 5999: " << ej10.mayor5999 << "\n";
 }
 
+//Ejercicio 11
+
+struct Ej11{
+    int N;
+    int mayor=0;
+    int menor;
+    int posicionMayor=0;
+    int posicionMenor=0;
+};
 void Ejercicio11() {
     cout << "Dados N valores informar el mayor, el menor y en que posición del conjunto fueron ingresados. \n \n";
+
+    Ej11 ej11;
+    ej11.N=ReadInt("Cuantos valores hay?");
+    int valores[ej11.N+1]; //+1 para el utlimo valor que tiene que dar 0
+    for (int i=0; i<ej11.N; i++){
+        valores[i]=ReadInt("Ingresar valor numero");
+        if (i==0){ //Si es la primera iteracion hago que el valor de ej11.menor sea igual al numero que se incializo primero
+            ej11.menor=valores[i];
+        }
+        if (valores[i]>ej11.mayor){
+            ej11.mayor=valores[i];
+            ej11.posicionMayor=i+1;
+        }
+        else if (valores[i]<ej11.menor){
+            ej11.menor=valores[i];
+            ej11.posicionMenor=i+1;
+        }
+    }
+    cout << "El mayor es: " << ej11.mayor << " y se encuentra en la posicion: " << ej11.posicionMayor << "\n"
+    << "El menor es: " << ej11.menor << " y se encuentra en la posicion: " << ej11.posicionMenor << "\n";
 }
 
+//Ejercicio 12
+
+struct PersonaEj12{
+    char *Nombre;
+    int FechaDeNacimiento;
+};
+struct Ej12{
+    int año=9999;
+    int mes=99;
+    int dia=99;
+};
 void Ejercicio12() {
-    
+    cout << " Dado un conjunto de Nombres y Fechas de nacimientos (AAAAMMDD), que finaliza con un Nombre= “FIN”, informar el nombre de la persona con mayor edad y el de la mas joven. Utilizar la función strcmp (<cstring>) para evaluar fin de datos.";
+
+    PersonaEj12 p12;
+    Ej12 ej12;
+    int n = ReadInt("Ingresar la cantidad de valores que quiera ingresar");
+    char *valores[n+1];
+    valores[n+1]="FIN";
+
+    for (int i=0;i<n;i++){
+        cout << "Ingresar el nombre de la persona " << i;
+        cin >> valores[i];
+        p12.Nombre=valores[i];
+    }
 }
 
 void Ejercicio13() {
@@ -373,9 +428,9 @@ int Random(int minimo, int maximo){
 // }
 
 
-//Leer Texto con chars (no anda)
-// char ReadText(string txt){
-//     char[10+1] result;
+//Leer Texto con chars LA RE PUTA MADRE NO ANDA PQ C++ NO ME DEJA RETORNAR ARRAYS PORQUE MI VIDA ES TAN UN ASCO AHORA VOY A TENER QUE PONER 20000099999 CIN NOOOO
+// char ReadText(const char txt[]){
+//     char result[99];
 //     cout << txt << "\n";
 //     cin >> result;
 //     return result;
