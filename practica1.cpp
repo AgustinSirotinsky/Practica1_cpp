@@ -143,7 +143,7 @@ void Ejercicio3() {
     for (int i=2; i<=10000; i++){
         if (i%2==0){
             numeroFinal=numeroFinal+i;
-            cout << "Suma actual: " << numeroFinal << "\n";
+            cout << "Suma personas[i]: " << numeroFinal << "\n";
         }
     }
 
@@ -332,30 +332,70 @@ void Ejercicio11() {
 }
 
 //Ejercicio 12
-
-struct PersonaEj12{
-    char *Nombre;
-    int FechaDeNacimiento;
-};
 struct Ej12{
-    int año=9999;
-    int mes=99;
-    int dia=99;
+    char nombre[20] ="";
+    int año;
+    int mes;
+    int dia;
 };
 void Ejercicio12() {
-    cout << " Dado un conjunto de Nombres y Fechas de nacimientos (AAAAMMDD), que finaliza con un Nombre= “FIN”, informar el nombre de la persona con mayor edad y el de la mas joven. Utilizar la función strcmp (<cstring>) para evaluar fin de datos.";
+    cout << " Dado un conjunto de Nombres y Fechas de nacimientos (AAAAMMDD), que finaliza con un Nombre= “FIN”, informar el nombre de la persona con mayor edad y el de la mas joven. Utilizar la función strcmp (<cstring>) para evaluar fin de datos. \n \n";
 
-    PersonaEj12 p12;
-    Ej12 ej12;
-    int n = ReadInt("Ingresar la cantidad de valores que quiera ingresar");
-    char *valores[n+1];
-    valores[n+1]="FIN";
+    // int n = ReadInt("Ingresar la cantidad de valores que quiera ingresar");
+    
+    Ej12 personas[99];
+    Ej12 viejo;
+    Ej12 joven;
 
-    for (int i=0;i<n;i++){
-        cout << "Ingresar el nombre de la persona " << i;
-        cin >> valores[i];
-        p12.Nombre=valores[i];
+    viejo.año=9999;
+    viejo.mes=99;
+    viejo.dia=99;
+
+    joven.año=0;
+    joven.mes=0;
+    joven.dia=0;
+
+    int fecha=0;
+
+    for (int i=0;i<99;i++){
+        cout << "Ingresar el nombre de la persona " << i+1 << "\n";
+        cin >> personas[i].nombre;
+        if (strcmp(personas[i].nombre, "FIN") == 0){
+            i=99;
+        }
+        else {
+            cout << "Ingrese su fecha de nacimiento (AAAAMMDD)" << " \n";
+            cin >> fecha;
+
+            personas[i].año = fecha / 10000;
+            personas[i].mes = (fecha % 10000) / 100;
+            personas[i].dia = fecha % 100;
+
+            if (personas[i].año < viejo.año){
+                viejo=personas[i];
+            }
+            else if (personas[i].año > joven.año){
+                joven=personas[i];
+            }
+            else if (personas[i].año == viejo.año){
+                if (personas[i].mes < viejo.mes){
+                    viejo=personas[i];
+                }
+            else if (personas[i].mes > joven.mes){
+                    joven=personas[i];
+                }
+            else if (personas[i].mes=viejo.mes){
+                if (personas[i].dia < viejo.dia){
+                    viejo=personas[i];
+                    }
+                else {
+                    joven=personas[i];
+                    }
+                }
+            }
+        }
     }
+    cout << "Persona mas joven: " << joven.nombre << "\nPersona mas vieja: " << viejo.nombre;
 }
 
 void Ejercicio13() {
