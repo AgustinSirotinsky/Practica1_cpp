@@ -4,6 +4,10 @@
 
 using namespace std;
 
+//Template
+
+
+
 void Ejercicio1();
 void Ejercicio2();
 void Ejercicio3();
@@ -30,7 +34,16 @@ void Ejercicio20();
 int ReadInt(const char txt[]);
 double ReadDouble(const char txt[]);
 float ReadFloat(const char txt[]);
+char ReadChar(const char txt[]);
 
+//Template
+template <typename T>
+T Read(const char txt[]){
+    T result;
+    cout << txt << "\n";
+    cin>>result;
+    return result;
+}
 //Funciones extras
 int Random(int minimo, int maximo);
 
@@ -166,7 +179,7 @@ void Ejercicio4() {
 }
 
 void Ejercicio5() {
-    cout << "Dado un triángulo representado por sus lados L1, L2, L3, determinar e imprimir una leyenda según sea: equilátero, isósceles o escalenos. \n \n";
+    cout << "Dado un triángulo representado por sus lados L1, L2, L3, determinar e imprimir una leyenda según sea: equilátero, isosceles o escalenos. \n \n";
 
     int L1 = ReadInt("Introduzca el valor del lado 1");
     int L2 = ReadInt("Introduzca el valor del lado 2");
@@ -245,17 +258,80 @@ void Ejercicio8() {
     cout << "Promedio de numeros por arriba de 100: " << promedioOver100 << "\n suma de los numeros menores que -10: " << negative;
 }
 
+//Ejercicio 9
+
+struct Infracciones{
+    int tipoInfraccion;
+    char motivo[99];
+    int valor;
+    char gravedad;
+};
 void Ejercicio9() {
-    cout << "Se realiza una inspección en una fábrica de pinturas, y se detectaron 20 infracciones. De cada infracción se tomó nota de los siguientes datos:\n "
-    <<"-Tipo de Infracción (1, 2, 3, o 4)\n"
-    <<"Motivo de la Infracción\n"
+    cout << "Se realiza una inspeccion en una fábrica de pinturas, y se detectaron 20 infracciones. De cada infraccion se tomo nota de los siguientes datos:\n"
+    <<"-Tipo de Infraccion (1, 2, 3, o 4)\n"
+    <<"-Motivo de la Infraccion\n"
     <<"-Valor de la multa (un entero)\n" 
-    <<"-Gravedad de la infracción ('L','M', 'G')\n \n"
+    <<"-Gravedad de la infraccion ('L','M', 'G')\n \n"
     <<"Se pide informar al final del proceso:\n" 
-    <<"•Los valores totales de la multa a pagar de acuerdo al tipo de gravedad.\n"
-    <<"• La leyenda “Clausurar fabrica” si la cantidad de infracciones 3 y 4 con gravedad “G” sean mayor a 3. \n \n";
+    <<"-Los valores totales de la multa a pagar de acuerdo al tipo de gravedad.\n"
+    <<"-La leyenda “Clausurar fabrica” si la cantidad de infracciones 3 y 4 con gravedad “G” sean mayor a 3. \n \n";
 
+    int sumaL=0;
+    int sumaM=0;
+    int sumaG=0;
+    int sumaClausurarFabrica=0;
 
+    int n = ReadInt("Ingresar la cantidad de infracciones");
+    Infracciones infracciones[n];
+    Infracciones infraccionesVacio;
+
+    for (int i=0;i<n;i++){
+        infracciones[i]=infraccionesVacio;
+        cout << "\nInfraccion " << i+1;
+
+        infracciones[i].tipoInfraccion=ReadInt("\n \nIngresar el tipo de infraccion");
+            while (infracciones[i].tipoInfraccion < 1 || infracciones[i].tipoInfraccion > 4){
+                infracciones[i].tipoInfraccion=ReadInt("\nTipo no valido. Ingresar el tipo de infraccion");
+            }
+
+        cout << "\nIngrese el motivo de la infraccion\n";
+        cin >> infracciones[i].motivo;
+
+        infracciones[i].valor = ReadInt("\nIngresar el valor de la infraccion");
+
+        cout << "\nIngreser la gravedad de la infraccion \n";
+        cin >> infracciones[i].gravedad;
+
+            while (infracciones[i].gravedad != 'L' && infracciones[i].gravedad != 'M' && infracciones[i].gravedad != 'G') {
+                cout << "Tipo de dato incorrecto. Ingreser la gravedad de la infraccion\n";
+                cin >> infracciones[i].gravedad;
+            }
+            switch (infracciones[i].gravedad){
+            case 'L':
+                sumaL+=infracciones[i].valor;
+                break;
+
+            case 'M':
+                sumaM+=infracciones[i].valor;
+                break;
+
+            case 'G':
+                sumaG+=infracciones[i].valor;
+                if (infracciones[i].tipoInfraccion == 3 ||infracciones[i].tipoInfraccion == 4){
+                    sumaClausurarFabrica++;
+                }
+                break;
+            }
+        system("cls");
+    }
+
+    cout << "Valor total de multas:"
+    << "\nL: " << sumaL
+    << "\nM: " << sumaM
+    << "\nG: " << sumaG;
+    if (sumaClausurarFabrica>3){
+        cout << "\nClausurar Fabrica";
+    }
 }
 
 //Ejercicio 10
@@ -308,7 +384,7 @@ struct Ej11{
     int posicionMenor=0;
 };
 void Ejercicio11() {
-    cout << "Dados N valores informar el mayor, el menor y en que posición del conjunto fueron ingresados. \n \n";
+    cout << "Dados N valores informar el mayor, el menor y en que posicion del conjunto fueron ingresados. \n \n";
 
     Ej11 ej11;
     ej11.N=ReadInt("Cuantos valores hay?");
@@ -339,7 +415,7 @@ struct Ej12{
     int dia;
 };
 void Ejercicio12() {
-    cout << " Dado un conjunto de Nombres y Fechas de nacimientos (AAAAMMDD), que finaliza con un Nombre= “FIN”, informar el nombre de la persona con mayor edad y el de la mas joven. Utilizar la función strcmp (<cstring>) para evaluar fin de datos. \n \n";
+    cout << " Dado un conjunto de Nombres y Fechas de nacimientos (AAAAMMDD), que finaliza con un Nombre= “FIN”, informar el nombre de la persona con mayor edad y el de la mas joven. Utilizar la funcion strcmp (<cstring>) para evaluar fin de datos. \n \n";
 
     // int n = ReadInt("Ingresar la cantidad de valores que quiera ingresar");
     
@@ -398,22 +474,128 @@ void Ejercicio12() {
     cout << "Persona mas joven: " << joven.nombre << "\nPersona mas vieja: " << viejo.nombre;
 }
 
+struct Ej13 {
+    float maxNegativo=-999999;
+    float minPositivo=999999;
+    int  valorMinDentroRango=99;
+    float total=0;
+    float promedio;
+};
 void Ejercicio13() {
     cout << "Dado un conjunto de valores, que finaliza con un valor nulo, determinar e imprimir (si hubo valores):\n" 
     <<"-El valor máximo negativo\n"
     <<"-El valor mínimo positivo\n"
     <<"-El valor mínimo dentro del rango -17.3 y 26.9\n"
-    <<"-El promedio de todos los valores. \n";
+    <<"-El promedio de todos los valores. \n \n";
 
-    
+    Ej13 ej13;
+    int n = ReadInt("Ingrese la cantidad de valores");
+    float valores[n+1];
+
+    for (int i=0; i<n; i++){
+        valores[i]=ReadFloat("Ingrese el numero");
+        //maxNegativo y minPositivo
+        if (valores[i]>ej13.maxNegativo && valores[i] < 0){
+            ej13.maxNegativo=valores[i];
+        }
+        else if (valores[i]<ej13.minPositivo && valores[i] >= 0){
+            ej13.minPositivo=valores[i];
+        }
+        //valoresDentroRango
+        if(valores[i] > -17.3 && valores [i] < 26.9 && valores[i] < ej13.valorMinDentroRango){
+            ej13.valorMinDentroRango=valores[i];
+        }
+        //promedio
+        ej13.total+=valores[i];
+    }
+    //promedio
+    ej13.promedio=ej13.total/n;
+
+    //cout's
+    if (n!=0){
+    cout << "Valor maximo negativo " << ej13.maxNegativo
+    << "\nValor minimo positivo " << ej13.minPositivo
+    << "\nValor minimo dentro del rango -17.3 y 26.9: " << ej13.valorMinDentroRango    
+    << "\nPromedio de todos los valores: " << ej13.promedio;
+    }
+
 }
 
+struct Ej14{
+    int pesoTotal=0;
+    int idContenedorMayorPeso;
+    int pesoContenedorMayorPeso=0;
+    int cantidadPuerto1=0;
+    int cantidadPuerto2=0;
+    int cantidadPuerto3=0;
+};
+struct Contenedor{
+    int id;
+    int peso;
+    int puertoArribo;
+};
 void Ejercicio14() {
-    
+    cout << "Un buque de carga traslada 100 contenedores a tres diferentes puertos del país. Los puertos se identifican con los números 1, 2 y 3."
+    <<"\nDe cada contenedor que el buque traslade se registran los siguientes datos:"
+    <<"\n -Identificación del contenedor (entero)"
+    <<"\n -Peso del contenedor en kg (entero)"
+    <<"\n -Puerto de arribo(un valor de 1 a 3)"
+    <<"\nSe pide calcular e informar:"
+    <<"\ni. El peso total que el buque debe trasladar"
+    <<"\nii. La identificación del contenedor de mayor peso"
+    <<"\niii. La cantidad de contenedores que debe trasladar a cada puerto\n \n";
+
+    Ej14 var;
+    Contenedor contenedores[100+1];
+    for (int i=0; i<100; i++){
+        //id
+        contenedores[i].id=i;
+        //peso y contenedorMayorPeso
+        contenedores[i].peso=Random(10,1000);
+        if (contenedores[i].peso>var.pesoContenedorMayorPeso){
+            var.idContenedorMayorPeso=contenedores[i].id;
+            var.pesoContenedorMayorPeso=contenedores[i].peso;
+        }
+        //puertoArribo y cantidadPuerto
+        contenedores[i].puertoArribo=Random(1,3);
+        switch (contenedores[i].puertoArribo){
+            case 1:
+            var.cantidadPuerto1++;
+            break;
+
+            case 2:
+            var.cantidadPuerto2++;
+            break;
+
+            case 3:
+            var.cantidadPuerto3++;
+            break;
+        }
+        //pesoTotal
+        var.pesoTotal+=contenedores[i].peso;
+    }
+    cout << "Peso total que debe trasladar el buque: " << var.pesoTotal << "kg"
+    << "\nIdentificacion del contenedor de mayor peso: " << var.idContenedorMayorPeso << ", " << var.pesoContenedorMayorPeso << "kg"
+    << "\nCantidad de contenedores que se trasladaran a cada puerto: "
+    << "\n1: " << var.cantidadPuerto1
+    << "\n2: " << var.cantidadPuerto2
+    << "\n3: " << var.cantidadPuerto3;
 }
+
 
 void Ejercicio15() {
-    
+    cout << "Dada una serie de caracteres que conforman una oración, donde cada palabra esta separada de la siguiente por un carácter blanco y la oración finaliza con un punto. Se pide informar:"
+    << "\n cantidad de veces que apareció cada vocal"
+    << "\n cantidad de palabras que contiene la oración"
+    << "\n cantidad de letras que posee la palabra mas larga. \n \n";
+
+    char palabra [10+1];
+    char frase [99+1];
+    cout << "Ingrese una oracion\n";
+    cin >> frase;
+
+    cout << frase;
+
 }
 
 void Ejercicio16() {
@@ -450,6 +632,7 @@ void Ejercicio20() {
 //Funcion random
 int Random(int minimo, int maximo){
     int result;
+    maximo++; //De esta forma si se ingresa (1,3) el intervalo sera de 1 a 3 y no de 1 a 2
     int distancia=maximo-minimo;
 
     //rand funciona de esta manera: rand() % distancia + numero inicial
@@ -476,6 +659,7 @@ int Random(int minimo, int maximo){
 //     return result;
 // }
 
+
 //Leer Numero
 int ReadInt(const char txt[]){
     int result;
@@ -495,6 +679,13 @@ double ReadDouble(const char txt[]){
 //Leer Numeros Float
 float ReadFloat(const char txt[]){
     float result;
+    cout << txt << "\n";
+    cin>>result;
+    return result;
+}
+
+char ReadChar(const char txt[]){
+    char result;
     cout << txt << "\n";
     cin>>result;
     return result;
