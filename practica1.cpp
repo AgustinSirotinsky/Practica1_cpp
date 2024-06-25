@@ -589,17 +589,78 @@ void Ejercicio15() {
     << "\n cantidad de palabras que contiene la oración"
     << "\n cantidad de letras que posee la palabra mas larga. \n \n";
 
-    char palabra [10+1];
-    char frase [99+1];
-    cout << "Ingrese una oracion\n";
-    cin >> frase;
+    int cantA=0, cantE=0, cantI=0, cantO=0, cantU=0;
+    int cantPalabras=0;
+    int cantLetrasPalabra;
+    int cantLetrasPalabraMax=0;
+    char letraActual;
+    int i=0;
 
-    cout << frase;
+    char palabra [10+1];
+    char frase []="Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+
+    while (letraActual!='.'){
+        letraActual=tolower(frase[i]);
+        i++;
+        //cantPalabras y cantLetrasPalabra
+        if (letraActual==' ' || letraActual=='.'){
+            cantPalabras++;
+            if (cantLetrasPalabra>cantLetrasPalabraMax){
+                cantLetrasPalabraMax=cantLetrasPalabra;
+            }
+            cantLetrasPalabra=0; //Se termino la palabra por lo que el numero de letras vuelve a empezar
+        }
+        else {
+            cantLetrasPalabra++;
+        }
+
+        //cantVocales
+        switch (letraActual)
+        {
+        case 'a':
+            cantA++;
+            break;
+
+        case 'e':
+            cantE++;
+            break;
+
+        case 'i':
+            cantI++;
+            break;
+
+        case 'o':
+            cantO++;
+            break;
+
+        case 'u':
+            cantU++;
+            break;
+        }
+    }
+    cout << "La frase es '" << frase <<"'\n"
+    << "La oracion tiene " << cantPalabras << " palabras\n"
+    << "La palabra mas larga tiene " << cantLetrasPalabraMax << " letras\n\n"
+    << "Cantidad de veces que aparecio cada vocal:"
+    << "\nA: " << cantA
+    << "\nE: " << cantE
+    << "\nI: " << cantI
+    << "\nO: " << cantO
+    << "\nU: " << cantU;
 
 }
 
 void Ejercicio16() {
-    
+    cout << "Dado un conjunto de valores enteros, calcular e informar\n" 
+    << "a) cuantos valores cero hubo\n"
+    << "b) promedio de valores positivos\n"
+    << "c) sumatoria de valores negativos\n\n"
+    << "Resolver el ejercicio para los siguientes lotes de datos:\n"
+    << "167 valores enteros\n"
+    << "N valores, donde el valor de N debe ser leido previamente\n"
+    << "El conjunto de valores termina con un valor igual al anterior\n"
+    << "Se dan N valores, pero el proceso deberá finalizar si se procesan todos los valores o si la cantidad de ceros supera a cuatro\n"
+    << "Se dan N valores, pero el proceso deberá finalizar si se cumple alguna de las condiciones d) o si el promedio de positivos resulta mayor que seis.\n";
 }
 
 void Ejercicio17() {
@@ -684,6 +745,7 @@ float ReadFloat(const char txt[]){
     return result;
 }
 
+//Leer chars NO FUNCIONA MATENSE TODOS
 char ReadChar(const char txt[]){
     char result;
     cout << txt << "\n";
